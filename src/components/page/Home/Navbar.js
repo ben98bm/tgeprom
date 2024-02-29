@@ -88,7 +88,7 @@ function NavBar() {
                   <div class="col-lg-7">
                     <h2>A Propos de Nous</h2>
                     <div class="our-story">
-                      <h4>--------------------------------------------------</h4>
+                      <h4>------------------------------------------------</h4>
                       <h3>TGEPROM</h3>
                       <p><strong>TAYSIR GENERAL D'ENTREPRISES ET DE PROMOTION IMMOBILIERE</strong>, une entreprise dynamique dans le secteur du BTP, se distingue par son engagement 
                         indéfectible envers l'excellence et l'innovation. Fondée sur des valeurs solides de professionnalisme 
