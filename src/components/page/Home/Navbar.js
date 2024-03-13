@@ -386,7 +386,7 @@ function NavBar() {
 
               <div class="col-lg-4 col-md-6 portfolio-item filter-design">
                 <div class="portfolio-content h-100">
-                  <img src="assets/img/projects/design-1.jpg" class="img-fluid" alt="" />
+                  <img src="assets/img/hangar-projet.jpeg" class="img-fluid" alt="" />
                   <div class="portfolio-info">
                     <h4>Projet réhabilitation hangar et aménagement pharmaceutique socafi pharma 2</h4>
                     <p>Projet réhabilitation hangar et aménagement pharmaceutique socafi pharma 2</p>
