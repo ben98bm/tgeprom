@@ -1,6 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
+import emailjs from "@emailjs/browser";
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 function NavBar() {
+    const history = useHistory();
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [subject, setSubject] = useState('');
+    const [message, setMessage] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      const serviceId = 'service_3r3sctu';
+      const templateId = 'template_kppyrlg';
+      const userId = '9JEDgP2zfjGmPW_Ln';
+
+      emailjs.send(serviceId, templateId, {
+      name,
+      email,
+      subject,
+      message,
+      }, userId)
+      .then((response) => {
+          setSuccessMessage('votre message a bien été envoyé.');
+          setName('');
+          setEmail('');
+          setSubject('');
+          setMessage('');
+          history.push("/#about");
+      }, (error) => {
+          setErrorMessage('votre message n\'a pas été envoyé');
+      });
+
+      axios.post('/contact-form.php', { name, email, message, subject })
+      .then((response) => {
+          console.log(response);
+      })
+      .catch((error) => {
+          console.log(error);
+      });
+  };
+
     return(
     <main id="main">
       <div>
@@ -21,24 +64,6 @@ function NavBar() {
             <li><a href="#constructions">Services</a></li>
             <li><a href="#alt-services">Objectifs</a></li>
             <li><a href="#projects">Projets</a></li>
-            {/* <li><a href="blog.html">Blog</a></li>
-            <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-              <ul>
-                <li><a href="#">Dropdown 1</a></li>
-                <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                  <ul>
-                    <li><a href="#">Deep Dropdown 1</a></li>
-                    <li><a href="#">Deep Dropdown 2</a></li>
-                    <li><a href="#">Deep Dropdown 3</a></li>
-                    <li><a href="#">Deep Dropdown 4</a></li>
-                    <li><a href="#">Deep Dropdown 5</a></li>
-                  </ul>
-                </li>
-                <li><a href="#">Dropdown 2</a></li>
-                <li><a href="#">Dropdown 3</a></li>
-                <li><a href="#">Dropdown 4</a></li>
-              </ul>
-            </li> */}
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
@@ -329,8 +354,8 @@ function NavBar() {
                   <div class="portfolio-info">
                     <h4>Usine pharmaceutique Socaphi Pharma Diamniadio</h4>
                     <p>Usine pharmaceutique Socaphi Pharma Diamniadio</p>
-                    <a href="assets/img/projects/remodeling-1.jpg" title="Remodeling 1" data-gallery="portfolio-gallery-remodeling" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                    <a  title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                    {/* <a href="assets/img/projects/remodeling-1.jpg" title="Remodeling 1" data-gallery="portfolio-gallery-remodeling" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                    <a href="/Socafi" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a> */}
                   </div>
                 </div>
               </div>
@@ -341,8 +366,8 @@ function NavBar() {
                   <div class="portfolio-info">
                     <h4>Immeuble R+3 Moustapha et Ibrahima à OUAKAM</h4>
                     <p>Immeuble R+3 Moustapha et Ibrahima à OUAKAM</p>
-                    <a href="assets/img/residence-R+3.JPG" title="Construction 1" data-gallery="portfolio-gallery-construction" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                    <a  title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                    {/* <a href="assets/img/residence-R+3.JPG" title="Construction 1" data-gallery="portfolio-gallery-construction" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                    <a  href="/Moustapha&Ibrahima" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a> */}
                   </div>
                 </div>
               </div>
@@ -353,8 +378,8 @@ function NavBar() {
                   <div class="portfolio-info">
                     <h4>Usine Savon Mbao</h4>
                     <p>Usine Savon Mbao</p>
-                    <a href="assets/img/projects/repairs-1.jpg" title="Repairs 1" data-gallery="portfolio-gallery-repairs" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                    <a  title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                    {/* <a href="assets/img/projects/repairs-1.jpg" title="Repairs 1" data-gallery="portfolio-gallery-repairs" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                    <a href="/Savon" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a> */}
                   </div>
                 </div>
               </div>
@@ -365,8 +390,8 @@ function NavBar() {
                   <div class="portfolio-info">
                     <h4>Projet réhabilitation hangar et aménagement pharmaceutique socafi pharma 2</h4>
                     <p>Projet réhabilitation hangar et aménagement pharmaceutique socafi pharma 2</p>
-                    <a href="assets/img/projects/design-1.jpg" title="Repairs 1" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                    <a  title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                    {/* <a href="assets/img/projects/design-1.jpg" title="Repairs 1" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                    <a href="/Hangar" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a> */}
                   </div>
                 </div>
               </div>
@@ -377,20 +402,20 @@ function NavBar() {
                   <div class="portfolio-info">
                     <h4>Projet de construction résidence Darr Nouhr à Touba</h4>
                     <p>Projet de construction résidence Darr Nouhr à Touba</p>
-                    <a href="assets/img/Daar-noor.jpg" title="Remodeling 2" data-gallery="portfolio-gallery-remodeling" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                    <a  title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                    {/* <a href="assets/img/Daar-noor.jpg" title="Remodeling 2" data-gallery="portfolio-gallery-remodeling" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                    <a href="/Nouhr" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a> */}
                   </div>
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6 portfolio-item filter-construction">
                 <div class="portfolio-content h-100">
-                  <img src="assets/img/projects/construction-2.jpg" class="img-fluid" alt="" />
+                  <img src="assets/img/taysir.jpg" class="img-fluid" alt="" />
                   <div class="portfolio-info">
                     <h4>Projet de construction résidence Taysir</h4>
                     <p>Projet de construction résidence Taysir</p>
-                    <a href="assets/img/projects/construction-2.jpg" title="Construction 2" data-gallery="portfolio-gallery-construction" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                    <a  title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                    {/* <a href="assets/img/projects/construction-2.jpg" title="Construction 2" data-gallery="portfolio-gallery-construction" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                    <a href="/Taysir" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a> */}
                   </div>
                 </div>
               </div>
@@ -401,12 +426,12 @@ function NavBar() {
 
               <div class="col-lg-4 col-md-6 portfolio-item filter-repairs">
                 <div class="portfolio-content h-100">
-                  <img src="assets/img/projects/repairs-2.jpg" class="img-fluid" alt="" />
+                  <img src="assets/img/tawfekh.jpg" class="img-fluid" alt="" />
                   <div class="portfolio-info">
                     <h4>Projet de construction résidence tawfekh à Touba</h4>
                     <p>Projet de construction résidence tawfekh à Touba</p>
-                    <a href="assets/img/projects/repairs-2.jpg" title="Repairs 2" data-gallery="portfolio-gallery-repairs" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                    <a  title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
+                    {/* <a href="assets/img/projects/repairs-2.jpg" title="Repairs 2" data-gallery="portfolio-gallery-repairs" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                    <a href="/Tawfekh" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a> */}
                   </div>
                 </div>
               </div>
@@ -466,31 +491,30 @@ function NavBar() {
         <div class="row gy-4 mt-1">
 
           <div class="col-lg-6 ">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1997.4290698630243!2d-17.467632866681083!3d14.707520619920633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec172bd3abb1675%3A0x40cc4825f7c70821!2sPG5M%2B264%2C%20Dakar%2012000!5e1!3m2!1sfr!2ssn!4v1708965593593!5m2!1sfr!2ssn" frameborder="0" style={{border: `10`, width: `100%`, height: `384px`}} allowfullscreen></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.087590140709!2d-17.469385625164325!3d14.707638485791522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4b504d4c840c23%3A0x83db04dc2ffc7e9!2sTGEPROM!5e0!3m2!1sfr!2ssn!4v1710256296798!5m2!1sfr!2ssn" frameborder="0" style={{border: `10`, width: `100%`, height: `384px`}} allowfullscreen></iframe>
           </div>
 
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form onSubmit={handleSubmit} class="php-email-form">
               <div class="row gy-4">
                 <div class="col-lg-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Prenom et Nom" required />
+                  <input type="text" name="name" value={name} onChange={(event) => setName(event.target.value)} class="form-control" id="name" placeholder="Prenom et Nom" required />
                 </div>
                 <div class="col-lg-6 form-group">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Email" required />
+                  <input type="email" class="form-control" value={email} onChange={(event) => setEmail(event.target.value)}  name="email" id="email" placeholder="Email" required />
                 </div>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Objet" required />
+                <input type="text" class="form-control" value={subject} onChange={(event) => setSubject(event.target.value)} name="subject" id="subject" placeholder="Objet" required />
               </div>
               <div class="form-group">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+                <textarea class="form-control" value={message} onChange={(event) => setMessage(event.target.value)} name="message" rows="5" placeholder="Message" required></textarea>
               </div>
               <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
+                  {successMessage && <div class="sent-message">{successMessage}</div>}
+                  {errorMessage && <div class="error-message">{errorMessage}</div>}
               </div>
-              <div class="text-center"><button type="submit">Envoyer le Message</button></div>
+              <div class="text-center"><button type="submit" onclick="rechargerPage()">Envoyer le Message</button></div>
             </form>
           </div>
         </div>

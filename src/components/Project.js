@@ -1,10 +1,22 @@
 import React from "react";
-import Projet from "./page/Home/Projet";
+import Socafi from "./page/Home/Socafi";
+import Taysir from "./page/Home/Taysir";
+import Moustapha from "./page/Home/Moustapha";
+import Savon from "./page/Home/Savon";
+import Hangar from "./page/Home/Hangar";
+import Nouhr from "./page/Home/Nouhr";
+import Tawfekh from "./page/Home/Tawfekh";
 
 function Projects(){
     return (
         <>
-            <Projet />
+            <Socafi />
+            <Taysir />
+            <Moustapha />
+            <Savon />
+            <Hangar />
+            <Nouhr />
+            <Tawfekh />
         </>
     );
 }

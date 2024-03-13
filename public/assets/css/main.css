@@ -2061,6 +2061,7 @@ section {
 
 .blog .posts-list .post-img img {
   transition: 0.5s;
+  border-radius: 10px;
 }
 
 .blog .posts-list .post-date {
@@ -2698,3 +2699,4 @@ section {
 .footer .footer-legal .credits a {
   color: var(--color-primary);
 }
+
