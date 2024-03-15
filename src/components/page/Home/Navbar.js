@@ -14,62 +14,62 @@ function NavBar() {
 
     const handleSubmit = (event) => {
       event.preventDefault();
-      const serviceId = 'service_3r3sctu';
-      const templateId = 'template_kppyrlg';
-      const userId = '9JEDgP2zfjGmPW_Ln';
+    const serviceId = 'service_3r3sctu';
+    const templateId = 'template_kppyrlg';
+    const userId = '9JEDgP2zfjGmPW_Ln';
 
-      emailjs.send(serviceId, templateId, {
-      name,
-      email,
-      subject,
-      message,
-      }, userId)
-      .then((response) => {
-          setSuccessMessage('votre message a bien été envoyé.');
-          setName('');
-          setEmail('');
-          setSubject('');
-          setMessage('');
-          history.push("/#about");
-      }, (error) => {
-          setErrorMessage('votre message n\'a pas été envoyé');
-      });
+    emailjs.send(serviceId, templateId, {
+    name,
+    email,
+    subject,
+    message,
+    }, userId)
+    .then((response) => {
+        setSuccessMessage('votre message a bien été envoyé.');
+        setName('');
+        setEmail('');
+        setSubject('');
+        setMessage('');
+        history.push("/#about");
+    }, (error) => {
+        setErrorMessage('votre message n\'a pas été envoyé');
+    });
 
-      axios.post('/contact-form.php', { name, email, message, subject })
-      .then((response) => {
-          console.log(response);
-      })
-      .catch((error) => {
-          console.log(error);
-      });
+    axios.post('/contact-form.php', { name, email, message, subject })
+    .then((response) => {
+        console.log(response);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
   };
 
     return(
     <main id="main">
       <div>
-          <header id="header" class="header d-flex align-items-center">
-      <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+        <header id="header" class="header d-flex align-items-center">
+          <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-        <a href="" class="logo d-flex align-items-center">
-          <img src="assets/img/logotgeprom.JPG" alt="k"></img>
-          <h1>TGEPROM<span>.</span></h1>
-        </a>
+          <a href="" class="logo d-flex align-items-center">
+            <img src="assets/img/logotgeprom.JPG" alt="k"></img>
+            <h1>TGEPROM<span>.</span></h1>
+          </a>
 
-        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-        <nav id="navbar" class="navbar">
-          <ul>
-            <li><a href="#hero" class="active">ACCEUIL</a></li>
-            <li><a href="#about">A Propos</a></li>
-            <li><a href="#constructions">Services</a></li>
-            <li><a href="#alt-services">Objectifs</a></li>
-            <li><a href="#projects">Projets</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
+          <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+          <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+          <nav id="navbar" class="navbar">
+            <ul>
+              <li><a href="#hero">ACCEUIL</a></li>
+              <li><a href="#about">A Propos</a></li>
+              <li><a href="#constructions">Services</a></li>
+              <li><a href="#alt-services">Objectifs</a></li>
+              <li><a href="#projects">Projets</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </nav>
 
-      </div>
-    </header>
+          </div>
+      </header>
           <section id="hero" class="hero">
 
               <div class="info d-flex align-items-center">
